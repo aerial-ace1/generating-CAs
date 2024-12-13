@@ -1,27 +1,13 @@
 """
-Script to Generate a CA of Neighbourhood 3
+Script to Generate a Random CA of Neighbourhood 3
 """
 
 import random
+from gen_ca_helper import get_3_neighbourhood
 from gen_ca_rules import first_rule_table, last_rule_table, transition_rules
 
-# print(first_rule_table, last_rule_table, transition_rules)
 
-
-def get_3_neighbourhood(number, position):
-    """
-    Extracts 3 neighbourhood at a given position from the binary
-    representation of a number
-    """
-    binary_repr = format(number, "08b")
-    if position == 0:
-        return "0" + binary_repr[0:2]
-    if position == 7:
-        return binary_repr[6:] + "0"
-    return binary_repr[position - 1: position + 2]
-
-
-def gen_ca(number, ca_class, steps):
+def gen_ca_random(number, ca_class, steps):
     """
     Generates the next step of the CA using transition rules
     """
@@ -36,7 +22,7 @@ def gen_ca(number, ca_class, steps):
         next_number = random.choice(
             list(transition_rules[ca_class][next_class])
         )
-        gen_ca(next_number, next_class, steps - 1)
+        gen_ca_random(next_number, next_class, steps - 1)
     else:
         next_class = random.choice(list(last_rule_table.keys()))
         next_number = random.choice(list(last_rule_table[next_class]))
@@ -47,4 +33,4 @@ def gen_ca(number, ca_class, steps):
 if __name__ == "__main__":
     init_class = random.choice(list(first_rule_table.keys()))
     init_number = random.choice(list(first_rule_table[init_class]))
-    gen_ca(init_number, init_class, random.randint(3, 5))
+    gen_ca_random(init_number, init_class, random.randint(3, 5))

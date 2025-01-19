@@ -1,24 +1,29 @@
+"""
+Script to store helper functions for Gen CA Graph Scripts
+"""
+
 import os
 import matplotlib.pyplot as plt
 import networkx as nx
 from gen_ca_helper import to_bin, get_3_neighbourhood
 
+
 def init_graph(states):
     """
     Initialize the graph structures.
-    
+
     Args:
     states (int): Total number of states.
 
     Returns:
-    tuple: A tuple containing vertices (list), edges (list), and graph_dict (dict) for the graph.
+    tuple: vertices (list), edges (list), graph_dict (dict) for the graph.
     """
     vertices = []
     edges = []
     graph_dict = {}
-    
+
     for state in range(states):
-        bin_repr = to_bin(state, 4) 
+        bin_repr = to_bin(state, 4)
         graph_dict[state] = {"visited": False, "next": False, "bin": bin_repr}
         vertices.append(bin_repr)
 
@@ -27,8 +32,9 @@ def init_graph(states):
 
 def display_graph(vertices, edges, filename="transition_diagram.png"):
     """
-    Generate and display the transition diagram graph with colors for connected components.
-    
+    Generate and display the transition diagram graph with
+    colors for connected components.
+
     Args:
     vertices (list): List of vertex labels (binary strings).
     edges (list): List of edges between the vertices.
@@ -38,33 +44,27 @@ def display_graph(vertices, edges, filename="transition_diagram.png"):
     None
     """
     g = nx.DiGraph()
-    g.add_nodes_from(vertices)  
-    g.add_edges_from(edges)   
-    
-    plt.figure(figsize=(10, 8))
+    g.add_nodes_from(vertices)
+    g.add_edges_from(edges)
 
-    
+    plt.figure(figsize=(10, 8))
     pos = nx.kamada_kawai_layout(g)
-    #Drawing graph
     nx.draw(
         g, pos,
-        with_labels=True, 
+        with_labels=True,
         font_weight="bold",
         node_size=1500,
-        node_color='black',  
-        edge_color='black',  
+        node_color='black',
+        edge_color='black',
         font_size=10,
         font_color='white'
     )
-    
-    
     plt.savefig(filename, dpi=300, bbox_inches="tight")
     plt.close()
 
-   
-    if os.name == 'posix':  
+    if os.name == 'posix':
         os.system(f'xdg-open {filename}')
-    elif os.name == 'nt':  
+    elif os.name == 'nt':
         os.system(f'start {filename}')
     else:
         print(f"Please open the image manually: {filename}")
@@ -88,15 +88,12 @@ def gen_transitions(states, ca_len, graph_dict, ca_vals_bin):
     state = 0
     while state < states:
         if graph_dict[state]["visited"]:
-            state += 1 
+            state += 1
         else:
             graph_dict[state]["visited"] = True
             next_state = ""
-            
-            
-            for position in range(ca_len): # Generate the next state based on the neighborhood configurations
+            for position in range(ca_len):
                 lookup_index = int(get_3_neighbourhood(state, position, 4), 2)
                 next_state += ca_vals_bin[position][-lookup_index - 1]
-                
-            graph_dict[state]["next"] = next_state  
-            state = int(next_state, 2)  
+            graph_dict[state]["next"] = next_state
+            state = int(next_state, 2)

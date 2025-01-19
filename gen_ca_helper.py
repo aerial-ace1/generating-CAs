@@ -19,8 +19,24 @@ def get_3_neighbourhood(number, position, bits=8):
     if position == 0:
         return "0" + binary_repr[0:2]
     if position == bits - 1:
-        return binary_repr[(bits - 2):] + "0"
-    return binary_repr[(position - 1): position + 2]
+        offset = bits - 2
+        return binary_repr[offset:] + "0"
+    l_offset = position - 1
+    r_offset = position + 2
+    return binary_repr[l_offset:r_offset]
+
+
+def get_4_neighbourhood(number, position, offset=0, bits=4):
+    """
+    Extracts 4 neighbourhood at a given position from the binary
+    representation of a number
+    """
+    binary_repr = to_bin(number, bits)
+    return (
+        "0" * (bits - 1 - position - offset)
+        + binary_repr[: position + 2 + offset]
+        + "0" * (position - bits + 1 + offset)
+    )[-4:]
 
 
 def transition_table(ca_vals):

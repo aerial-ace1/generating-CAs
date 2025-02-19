@@ -2,3 +2,5 @@ __pycache__/
 all_steps/[0-9]*
 all_steps/[0-9]*_bin
 transition_diagram.png
+logs.txt
+result.txt

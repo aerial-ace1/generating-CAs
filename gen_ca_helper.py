@@ -50,18 +50,14 @@ def rev_transition_table(ca_vals, offset_list):
     """
     Generate transition table
     """
-    print(
+    logs = []
+    logs.append(
         "Present State \t1111\t1110\t1101\t1100\t1011\t1010\t1001\t1000"
         "\t0111\t0110\t0101\t0100\t0011\t0010\t0001\t0000\tRule\tOffset"
     )
     for index, element in enumerate(ca_vals):
         f_bin_element = "\t".join(element)
         f_num_element = int("".join(element), 2)
-        print(
-            f"({index+1})Next state\t",
-            f_bin_element,
-            "\t",
-            f_num_element,
-            "\t",
-            offset_list[index],
-        )
+        line = f"({index+1})Next state\t{f_bin_element}\t{f_num_element}\t{offset_list[index]}"
+        logs.append(line)
+    return logs

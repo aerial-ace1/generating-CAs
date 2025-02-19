@@ -7,7 +7,7 @@ from gen_ca_helper import to_bin
 from gen_ca_rules import first_rule_table, last_rule_table, transition_rules
 
 
-STEP = 2  # Arbitrary Number of Steps
+STEP = 4  # Arbitrary Number of Steps
 list_of_ca = []
 
 
@@ -39,4 +39,3 @@ if __name__ == "__main__":
     with open(f"all_steps/{STEP}_bin", "w", encoding="utf-8") as file:
         for line in list_of_ca:
             file.write(",".join(to_bin(element) for element in line) + "\n")
-

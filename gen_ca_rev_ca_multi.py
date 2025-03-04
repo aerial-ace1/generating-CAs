@@ -23,7 +23,7 @@ def transition_diagram():
     rev_edges = [(v["next"], v["bin"]) for _, v in graph_dict.items()]
     display_graph(vertices, rev_edges)
 
-    nhood_4_asymmetric(ca_vals, rev_edges)
+    print(nhood_4_asymmetric(ca_vals, rev_edges, False))
 
 
 if __name__ == "__main__":

@@ -57,7 +57,8 @@ def display_graph(vertices, edges, filename="transition_diagram.png"):
         node_color='black',
         edge_color='black',
         font_size=10,
-        font_color='white'
+        font_color='white',
+        connectionstyle="arc3,rad=0.33"
     )
     plt.savefig(filename, dpi=300, bbox_inches="tight")
     plt.close()

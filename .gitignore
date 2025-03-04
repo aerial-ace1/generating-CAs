@@ -4,3 +4,5 @@ all_steps/[0-9]*_bin
 transition_diagram.png
 logs.txt
 result.txt
+output.txt
+temp.txt

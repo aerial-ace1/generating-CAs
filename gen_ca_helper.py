@@ -32,8 +32,8 @@ def get_4_neighbourhood(number, position, offset=0, bits=4):
     representation of a number
     """
     binary_repr = to_bin(number, bits)
-    binary_repr = "0"*(bits-1) + binary_repr + "0"*(bits-1)
-    return binary_repr[position+offset:][:bits]
+    binary_repr = "0" * (bits - 1) + binary_repr + "0" * (bits - 1)
+    return binary_repr[position + offset :][:bits]
 
 
 def transition_table(ca_vals):
@@ -46,7 +46,7 @@ def transition_table(ca_vals):
         print(f"({index+1})Next state\t", f_bin_element, "\t", element)
 
 
-def rev_transition_table(ca_vals, offset_list):
+def rev_transition_table(ca_vals, offset_list, find_num=True):
     """
     Generate transition table
     """
@@ -57,7 +57,78 @@ def rev_transition_table(ca_vals, offset_list):
     )
     for index, element in enumerate(ca_vals):
         f_bin_element = "\t".join(element)
-        f_num_element = int("".join(element), 2)
+        if find_num:
+            f_num_element = int("".join(element), 2)
+        else:
+            f_num_element = 0
         line = f"({index+1})Next state\t{f_bin_element}\t{f_num_element}\t{offset_list[index]}"
         logs.append(line)
     return logs
+
+
+def rev_transition_table_3(ca_vals, find_num=True):
+    """
+    Generate transition table
+    """
+    logs = []
+    logs.append("Present State \t111\t110\t101\t100\t011\t010\t001\t000\tRule")
+    for index, element in enumerate(ca_vals):
+        f_bin_element = "\t".join(element)
+        if find_num:
+            f_num_element = int("".join(element), 2)
+        else:
+            f_num_element = 0
+        line = f"({index+1})Next state\t{f_bin_element}\t{f_num_element}"
+        logs.append(line)
+    return logs
+
+
+def custom_checker_4(ca_vals, offset, iter_pos):
+    """
+    Dont Care Checker for 4n
+    """
+    custom_bitset = [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+        [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+        [1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0],
+        [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0],
+    ]
+    scbs = custom_bitset[offset + iter_pos]
+    for val, bit in zip(ca_vals, scbs):
+        if bit == 0:
+            if val not in ["0", "1"]:
+                return False
+        else:
+            if val != "2":
+                return False
+    return True
+
+
+def custom_checker_3(ca_vals, iter_pos):
+    """
+    Dont Care Checker for 3n
+    """
+    custom_bitset = [
+        [1, 1, 1, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 1, 0, 1, 0, 1, 0],
+    ]
+    if iter_pos == 0:
+        pick = 0
+    elif iter_pos == 3:
+        pick = 2
+    else:
+        pick = 1
+
+    scbs = custom_bitset[pick]
+    for val, bit in zip(ca_vals, scbs):
+        if bit == 0:
+            if val not in ["0", "1"]:
+                return False
+        else:
+            if val != "2":
+                return False
+    return True

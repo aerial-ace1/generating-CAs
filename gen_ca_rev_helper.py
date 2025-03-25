@@ -18,6 +18,7 @@ def nhood_4_symmetric(ca, rev_edges, ca_len, find_num=True):
     """
     logs = []
     new_ca_vals_bin = []
+    new_ca = []
     solved = False
     conflict = False
     offset_list = [0] * ca_len
@@ -56,11 +57,11 @@ def nhood_4_symmetric(ca, rev_edges, ca_len, find_num=True):
             solved = True
 
     if solved or (not find_num):
-        result = rev_transition_table(new_ca_vals_bin, offset_list, find_num)
+        result, new_ca = rev_transition_table(new_ca_vals_bin, offset_list, find_num)
         result = [f"CA: {ca} : 4"] + result
         write_lines_to_file(result, "result.txt")
     write_lines_to_file(logs, "logs.txt")
-    return solved
+    return solved, new_ca
 
 
 def nhood_4_asymmetric(ca, rev_edges, find_num=True):
@@ -68,6 +69,7 @@ def nhood_4_asymmetric(ca, rev_edges, find_num=True):
     Function to generate asymmetric neighbourhood in 4
     """
     logs = []
+    new_ca = []
     new_ca_vals_bin = []
     offset_list = []
     solved = False
@@ -107,11 +109,11 @@ def nhood_4_asymmetric(ca, rev_edges, find_num=True):
             break
 
     if solved or (not find_num):
-        result = rev_transition_table(new_ca_vals_bin, offset_list, find_num)
+        result, new_ca = rev_transition_table(new_ca_vals_bin, offset_list, find_num)
         result = [f"CA: {ca} : 4a"] + result
         write_lines_to_file(result, "result.txt")
     write_lines_to_file(logs, "logs.txt")
-    return solved
+    return solved, new_ca
 
 
 def nhood_3_symmetric(ca, rev_edges, ca_len, find_num=True):
@@ -119,6 +121,7 @@ def nhood_3_symmetric(ca, rev_edges, ca_len, find_num=True):
     Function to generate symmetric neighbourhood in 4
     """
     logs = []
+    new_ca = []
     new_ca_vals_bin = []
     solved = False
     conflict = False
@@ -153,11 +156,11 @@ def nhood_3_symmetric(ca, rev_edges, ca_len, find_num=True):
         solved = True
 
     if solved or (not find_num):
-        result = rev_transition_table_3(new_ca_vals_bin, False)
+        result, new_ca = rev_transition_table_3(new_ca_vals_bin, False)
         result = [f"CA: {ca} : 3"] + result
         write_lines_to_file(result, "result.txt")
     write_lines_to_file(logs, "logs.txt")
-    return solved
+    return solved, new_ca
 
 
 def write_lines_to_file(lines, filename):

@@ -50,23 +50,24 @@ def display_graph(vertices, edges, filename="transition_diagram.png"):
     plt.figure(figsize=(10, 8))
     pos = nx.kamada_kawai_layout(g)
     nx.draw(
-        g, pos,
+        g,
+        pos,
         with_labels=True,
         font_weight="bold",
         node_size=1500,
-        node_color='black',
-        edge_color='black',
+        node_color="black",
+        edge_color="black",
         font_size=10,
-        font_color='white',
-        connectionstyle="arc3,rad=0.33"
+        font_color="white",
+        connectionstyle="arc3,rad=0.33",
     )
     plt.savefig(filename, dpi=300, bbox_inches="tight")
     plt.close()
 
-    if os.name == 'posix':
-        os.system(f'xdg-open {filename}')
-    elif os.name == 'nt':
-        os.system(f'start {filename}')
+    if os.name == "posix":
+        os.system(f"xdg-open {filename}")
+    elif os.name == "nt":
+        os.system(f"start {filename}")
     else:
         print(f"Please open the image manually: {filename}")
 

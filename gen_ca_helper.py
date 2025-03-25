@@ -51,6 +51,7 @@ def rev_transition_table(ca_vals, offset_list, find_num=True):
     Generate transition table
     """
     logs = []
+    ca = []
     logs.append(
         "Present State \t1111\t1110\t1101\t1100\t1011\t1010\t1001\t1000"
         "\t0111\t0110\t0101\t0100\t0011\t0010\t0001\t0000\tRule\tOffset"
@@ -60,10 +61,12 @@ def rev_transition_table(ca_vals, offset_list, find_num=True):
         if find_num:
             f_num_element = int("".join(element), 2)
         else:
-            f_num_element = 0
+            bin_join = "".join(element)
+            f_num_element = int(bin_join.replace("2", "0"), 2)
+        ca.append(f_num_element)
         line = f"({index+1})Next state\t{f_bin_element}\t{f_num_element}\t{offset_list[index]}"
         logs.append(line)
-    return logs
+    return logs, ca
 
 
 def rev_transition_table_3(ca_vals, find_num=True):
@@ -71,16 +74,19 @@ def rev_transition_table_3(ca_vals, find_num=True):
     Generate transition table
     """
     logs = []
+    ca = []
     logs.append("Present State \t111\t110\t101\t100\t011\t010\t001\t000\tRule")
     for index, element in enumerate(ca_vals):
         f_bin_element = "\t".join(element)
         if find_num:
             f_num_element = int("".join(element), 2)
         else:
-            f_num_element = 0
+            bin_join = "".join(element)
+            f_num_element = int(bin_join.replace("2", "0"), 2)
+        ca.append(f_num_element)
         line = f"({index+1})Next state\t{f_bin_element}\t{f_num_element}"
         logs.append(line)
-    return logs
+    return logs, ca
 
 
 def custom_checker_4(ca_vals, offset, iter_pos):

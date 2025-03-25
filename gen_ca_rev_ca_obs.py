@@ -26,14 +26,19 @@ def transition_diagram():
             rev_edges = [(v["next"], v["bin"]) for _, v in graph_dict.items()]
 
             solved = "000"
-            if nhood_3_symmetric(ca_vals, rev_edges, ca_len, False):
+            result, new_ca = nhood_3_symmetric(ca_vals, rev_edges, ca_len, False)
+            if result:
                 solved = "100"
-            elif nhood_4_symmetric(ca_vals, rev_edges, ca_len, False):
-                solved = "010"
-            elif nhood_4_asymmetric(ca_vals, rev_edges, False):
-                solved = "001"
+            else:
+                result, new_ca = nhood_4_symmetric(ca_vals, rev_edges, ca_len, False)
+                if result:
+                    solved = "010"
+                else:
+                    result, new_ca = nhood_4_asymmetric(ca_vals, rev_edges, False)
+                    if result:
+                        solved = "001"
             with open("output.txt", "a", encoding="utf-8") as file:
-                file.write(f"CA: {ca_vals} : {solved}\n")
+                file.write(f"CA: {ca_vals} : {solved} : Isomorphic CA: {new_ca}\n")
 
 
 if __name__ == "__main__":

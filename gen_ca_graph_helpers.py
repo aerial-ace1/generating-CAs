@@ -48,7 +48,7 @@ def display_graph(vertices, edges, filename="transition_diagram.png"):
     g.add_edges_from(edges)
 
     plt.figure(figsize=(10, 8))
-    pos = nx.kamada_kawai_layout(g)
+    pos = nx.circular_layout(g)
     nx.draw(
         g,
         pos,

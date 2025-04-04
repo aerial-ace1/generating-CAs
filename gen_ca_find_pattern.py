@@ -2,6 +2,8 @@
 Script to Find Patterns in Neighbourhood 3 CAs
 """
 
+from collections import Counter
+
 
 def find_pattern():
     """
@@ -14,6 +16,14 @@ def find_pattern():
     filename = "file.txt"
     ca_list = set()
     iso_ca_list = set()
+    # p1_set = []
+    # p2_set = []
+    # p3_set = []
+    # p4_set = []
+    # iso_p1_set = []
+    # iso_p2_set = []
+    # iso_p3_set = []
+    # iso_p4_set = []
     with open(filename, "r", encoding="utf-8") as file:
         for line in file:
             ca = line.strip().split(":")[1].strip()[1:-1].split(",")
@@ -23,6 +33,15 @@ def find_pattern():
 
             ca_list.update(ca)
             iso_ca_list.update(iso_ca)
+            # p1_set.append(ca[0])
+            # p2_set.append(ca[1])
+            # p3_set.append(ca[2])
+            # p4_set.append(ca[3])
+            # iso_p1_set.append(iso_ca[0])
+            # iso_p2_set.append(iso_ca[1])
+            # iso_p3_set.append(iso_ca[2])
+            # iso_p4_set.append(iso_ca[3])
+
 
             # bin_iso_ca_4 = list(format(iso_ca[3], f"0{8}b"))
 
@@ -165,10 +184,51 @@ def find_pattern():
                 count += 1
         print(count)
 
-    find_0()
+    def find_3():
+        skips_1 = []
+        count = 0
+        for key, values in ca_set_3.items():
+            prefix_key = (
+                f'{key[1:-1].split(",")[0].strip()}'
+                + f':{key[1:-1].split(",")[1].strip()}'
+                + f':{key[1:-1].split(",")[2].strip()}'
+            )
+            # print(key, " : ", values)
+            if key not in skips_1:
+                middle = [int(key[1:-1].split(",")[3].strip())]
+                for key_1, values_1 in ca_set_3.items():
+                    prefix_key_1 = (
+                        f'{key_1[1:-1].split(",")[0].strip()}'
+                        f':{key_1[1:-1].split(",")[1].strip()}'
+                        f':{key_1[1:-1].split(",")[2].strip()}'
+                    )
+                    if (
+                        key_1 != key
+                        and prefix_key == prefix_key_1
+                        and values == values_1
+                    ):
+                        skips_1.append(key_1)
+                        middle.append(int(key_1[1:-1].split(",")[3].strip()))
+                int_pk = [int(x) for x in prefix_key.split(":")]
+                print(int_pk, " : ", middle, "->", values)
+                count += 1
+        print(count)
+
+    # find_0()
+    # print(Counter(p1_set))
+    # print(Counter(p2_set))
+    # print(Counter(p3_set))
+    # print(Counter(p4_set))
+    # print(Counter(iso_p1_set))
+    # print(Counter(iso_p2_set))
+    # print(Counter(iso_p3_set))
+    # print(Counter(iso_p4_set))
     # find_1()
     # find_2()
-    # print(len(ca_list))
+    find_3()
+    # xy = list(ca_list)
+    # xy.sort()
+    # print(xy)
     # print(len(iso_ca_list))
     # print(ca_list - iso_ca_list)
 

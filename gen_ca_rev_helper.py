@@ -127,7 +127,7 @@ def nhood_3_symmetric(ca, rev_edges, ca_len, find_num=True):
     conflict = False
     logs.append(f"CA: {ca}")
     conflict = False
-    new_ca_vals_bin = [["2"] * 8 for _ in range(ca_len)]
+    new_ca_vals_bin = [["2"] * (2**(ca_len-1)) for _ in range(ca_len)]
     for parent, child in rev_edges:
         for pos in range(ca_len):
             nhood = get_3_neighbourhood(int(parent, 2), pos, 4)

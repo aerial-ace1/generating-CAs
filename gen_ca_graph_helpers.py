@@ -8,7 +8,7 @@ import networkx as nx
 from gen_ca_helper import to_bin, get_3_neighbourhood
 
 
-def init_graph(states):
+def init_graph(states, ca_len=4):
     """
     Initialize the graph structures.
 
@@ -23,7 +23,7 @@ def init_graph(states):
     graph_dict = {}
 
     for state in range(states):
-        bin_repr = to_bin(state, 4)
+        bin_repr = to_bin(state, ca_len)
         graph_dict[state] = {"visited": False, "next": False, "bin": bin_repr}
         vertices.append(bin_repr)
 
@@ -89,13 +89,10 @@ def gen_transitions(states, ca_len, graph_dict, ca_vals_bin):
     """
     state = 0
     while state < states:
-        if graph_dict[state]["visited"]:
-            state += 1
-        else:
-            graph_dict[state]["visited"] = True
-            next_state = ""
-            for position in range(ca_len):
-                lookup_index = int(get_3_neighbourhood(state, position, 4), 2)
-                next_state += ca_vals_bin[position][-lookup_index - 1]
-            graph_dict[state]["next"] = next_state
-            state = int(next_state, 2)
+        graph_dict[state]["visited"] = True
+        next_state = ""
+        for position in range(ca_len):
+            lookup_index = int(get_3_neighbourhood(state, position, 4), 2)
+            next_state += ca_vals_bin[position][-lookup_index - 1]
+        graph_dict[state]["next"] = next_state
+        state += 1

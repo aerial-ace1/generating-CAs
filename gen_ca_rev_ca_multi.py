@@ -5,7 +5,7 @@ Script to generate the reverse transition diagram for Gen CA
 import sys
 from gen_ca_graph_helpers import init_graph, display_graph, gen_transitions
 from gen_ca_helper import to_bin, transition_table
-from gen_ca_rev_helper import nhood_4_asymmetric
+from gen_ca_rev_helper import nhood_4_asymmetric, nhood_3_symmetric
 
 
 def transition_diagram():
@@ -23,7 +23,10 @@ def transition_diagram():
     rev_edges = [(v["next"], v["bin"]) for _, v in graph_dict.items()]
     display_graph(vertices, rev_edges)
 
-    print(nhood_4_asymmetric(ca_vals, rev_edges, False))
+    truth, vals = nhood_3_symmetric(ca_vals, rev_edges, ca_len, False)
+    print(truth, vals)
+    transition_table(vals)
+    # print(nhood_4_asymmetric(ca_vals, rev_edges, False))
 
 
 if __name__ == "__main__":

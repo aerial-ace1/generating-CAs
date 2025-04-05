@@ -47,7 +47,8 @@ def find_pattern():
                 overall_list[len(cycle_list)] = {str(cycle_list): 1}
                 ca_dict[len(cycle_list)] = {str(cycle_list): [(ca, iso_ca)]}
     print(overall_list)
-    print(ca_dict[16])
+    for a, b in ca_dict[8]['[1, 1, 1, 1, 3, 3, 3, 3]']:
+        print(f"{a} -> {b}")
 
 
 if __name__ == "__main__":

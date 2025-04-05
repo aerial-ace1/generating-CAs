@@ -19,9 +19,9 @@ def transition_diagram():
 
             ca_len = len(ca_vals)
             # transition_table(ca_vals)
-            ca_vals_bin = [to_bin(int(val)) for val in ca_vals]
+            ca_vals_bin = [to_bin(int(val), 2**(ca_len-1)) for val in ca_vals]
             states = 2**ca_len
-            _, rev_edges, graph_dict = init_graph(states)
+            _, rev_edges, graph_dict = init_graph(states, ca_len)
             gen_transitions(states, ca_len, graph_dict, ca_vals_bin)
             rev_edges = [(v["next"], v["bin"]) for _, v in graph_dict.items()]
 

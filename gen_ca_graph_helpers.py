@@ -92,7 +92,7 @@ def gen_transitions(states, ca_len, graph_dict, ca_vals_bin):
         graph_dict[state]["visited"] = True
         next_state = ""
         for position in range(ca_len):
-            lookup_index = int(get_3_neighbourhood(state, position, 4), 2)
+            lookup_index = int(get_3_neighbourhood(state, position, ca_len), 2)
             next_state += ca_vals_bin[position][-lookup_index - 1]
         graph_dict[state]["next"] = next_state
         state += 1

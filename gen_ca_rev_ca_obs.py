@@ -12,14 +12,17 @@ def transition_diagram():
     Parse and generate transition diagram
     """
     # filename = "temp.txt"
-    filename = "all_steps/3"
+    filename = "all_steps_new/4"
+    count = 0
     with open(filename, "r", encoding="utf-8") as file:
         for line in file:
+            count += 1
+            print("\r", str(count), end="")
             ca_vals = line.strip()[1:-1].split(",")
 
             ca_len = len(ca_vals)
             # transition_table(ca_vals)
-            ca_vals_bin = [to_bin(int(val), 2**(ca_len-1)) for val in ca_vals]
+            ca_vals_bin = [to_bin(int(val), 2**(ca_len - 1)) for val in ca_vals]
             states = 2**ca_len
             _, rev_edges, graph_dict = init_graph(states, ca_len)
             gen_transitions(states, ca_len, graph_dict, ca_vals_bin)

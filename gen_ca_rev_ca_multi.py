@@ -14,11 +14,11 @@ def transition_diagram():
     """
     ca_vals = sys.argv[1:]
     ca_len = len(ca_vals)
-    ca_vals_bin = [to_bin(int(val)) for val in ca_vals]
+    ca_vals_bin = [to_bin(int(val), 2**(ca_len-1)) for val in ca_vals]
     states = 2**ca_len
 
     transition_table(ca_vals)
-    vertices, rev_edges, graph_dict = init_graph(states)
+    vertices, rev_edges, graph_dict = init_graph(states, ca_len)
     gen_transitions(states, ca_len, graph_dict, ca_vals_bin)
     rev_edges = [(v["next"], v["bin"]) for _, v in graph_dict.items()]
     display_graph(vertices, rev_edges)

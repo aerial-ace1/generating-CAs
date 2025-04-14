@@ -60,7 +60,7 @@ def nhood_4_symmetric(ca, rev_edges, ca_len, find_num=True):
         result, new_ca = rev_transition_table(new_ca_vals_bin, offset_list, find_num)
         result = [f"CA: {ca} : 4"] + result
         write_lines_to_file(result, "result.txt")
-    write_lines_to_file(logs, "logs.txt")
+    # ff
     return solved, new_ca
 
 
@@ -112,7 +112,7 @@ def nhood_4_asymmetric(ca, rev_edges, find_num=True):
         result, new_ca = rev_transition_table(new_ca_vals_bin, offset_list, find_num)
         result = [f"CA: {ca} : 4a"] + result
         write_lines_to_file(result, "result.txt")
-    write_lines_to_file(logs, "logs.txt")
+    # ff
     return solved, new_ca
 
 
@@ -127,10 +127,10 @@ def nhood_3_symmetric(ca, rev_edges, ca_len, find_num=True):
     conflict = False
     logs.append(f"CA: {ca}")
     conflict = False
-    new_ca_vals_bin = [["2"] * (2**(ca_len-1)) for _ in range(ca_len)]
+    new_ca_vals_bin = [["2"] * 8 for _ in range(ca_len)]
     for parent, child in rev_edges:
         for pos in range(ca_len):
-            nhood = get_3_neighbourhood(int(parent, 2), pos, 4)
+            nhood = get_3_neighbourhood(int(parent, 2), pos, ca_len)
             nhood_value = int(nhood, 2)
             if new_ca_vals_bin[pos][-nhood_value - 1] not in [
                 child[pos],
@@ -147,8 +147,9 @@ def nhood_3_symmetric(ca, rev_edges, ca_len, find_num=True):
             new_ca_vals_bin[pos][-nhood_value - 1] = child[pos]
         if conflict:
             break
-    for check in range(4):
-        if not custom_checker_3(new_ca_vals_bin[check], check):
+    # rev_transition_table(new_ca_vals_bin, [0,0,0,0,0], False)
+    for check in range(ca_len):
+        if not custom_checker_3(new_ca_vals_bin[check], check, ca_len):
             logs.append(f"Unfilled for {check}")
             conflict = True
             break
@@ -159,7 +160,7 @@ def nhood_3_symmetric(ca, rev_edges, ca_len, find_num=True):
         result, new_ca = rev_transition_table_3(new_ca_vals_bin, False)
         result = [f"CA: {ca} : 3"] + result
         write_lines_to_file(result, "result.txt")
-    write_lines_to_file(logs, "logs.txt")
+    # ff
     return solved, new_ca
 
 

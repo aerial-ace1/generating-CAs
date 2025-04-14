@@ -113,7 +113,7 @@ def custom_checker_4(ca_vals, offset, iter_pos):
     return True
 
 
-def custom_checker_3(ca_vals, iter_pos):
+def custom_checker_3(ca_vals, iter_pos, ca_len=4):
     """
     Dont Care Checker for 3n
     """
@@ -124,7 +124,7 @@ def custom_checker_3(ca_vals, iter_pos):
     ]
     if iter_pos == 0:
         pick = 0
-    elif iter_pos == 3:
+    elif iter_pos == ca_len - 1:
         pick = 2
     else:
         pick = 1

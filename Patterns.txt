@@ -1,0 +1,464 @@
+Identities
+
+17 -> 17
+51 -> 51
+68 -> 68
+204 -> 204
+
+------------------------------------------------------
+
+85 in 3rd position:
+last rule of iso is always 5, but for third rule:
+	if 85 + 5 -> third rule is 85
+	if 85 + 20 -> third rule is 153
+	if 85 + 65 -> third rule is 102
+	if 85 + 80 -> third rule is 170
+
+85 in 2nd position:
+third rule of iso is always 15, but for second rule:
+	if 85 + 15 -> 2nd rule is 85
+	if 85 + 60 -> 2nd rule is 153
+	if 85 + 195 -> 2nd rule is 102
+	if 85 + 240 -> 2nd rule is 170
+
+------------------------------------------------------
+
+For 102 in 3rd position:
+
+	3rd + 4th
+	102 + 5 -> 85 + 65
+	102 + 17 -> 153 + 17
+	102 + 68 -> 102 + 68
+	102 + 80 -> 170 + 20
+
+For 102 in 2nd position:
+	
+	2nd + 3rd
+	102 + 51 -> 153 + 51
+	102 + 204 -> 102 + 204
+	102 + 15 -> 85 + 195
+	102 + 240 -> 170 + 60
+
+------------------------------------------------------
+
+For 153 in 3rd position:
+	
+	153 + 5 -> 85 + 20
+	153 + 17 -> 102 + 17
+	153 + 68 -> 153 + 68
+	153 + 80 -> 170 + 65
+
+For 153 in 2nd position:
+
+	153 + 51 -> 102 + 51
+	153 + 204 -> 153 + 204
+	153 + 15 -> 85 + 60
+	153 + 240 -> 170 + 195
+
+------------------------------------------------------
+
+170 in 3rd position:
+last rule of iso is always 80, but for third rule:
+	if 170 + 5 -> third rule is 85
+	if 170 + 20 -> third rule is 102
+	if 170 + 65 -> third rule is 153
+	if 170 + 80 -> third rule is 170
+
+170 in 2nd position:
+third rule of iso is always 240, but for second rule:
+	if 170 + 15 -> 2nd rule is 85
+	if 170 + 60 -> 2nd rule is 102
+	if 85 + 195 -> 2nd rule is 153
+	if 85 + 240 -> 2nd rule is 170
+
+
+------------------------------------------------------
+
+
+For 15 in 3rd position we have already paired above with multiples of 17 in 2nd position
+For 15 in 2nd position we can pair with 1st rule as below:
+	
+	if root 10 then 15 -> 240
+	if root 5 then 15 -> 15
+	if root 6 then 15 -> 195
+	if root 9 then 15 -> 60
+
+------------------------------------------------------
+
+For 99 in 3rd position:
+	
+	if 2nd rule is 51:
+
+		99 + 17 -> 57 + 17  
+		99 + 68 -> 54 + 68
+
+	if 2nd rule is 204:
+
+		99 + 17 -> 147 + 17
+		99 + 68 -> 99 + 68
+	
+
+For 99 in 2nd position:
+	
+	if 1st rule is 3:
+		
+		99 + 51 -> 57 + 51
+		99 + 204 -> 54 + 204
+
+	else if 1st rule is 12:
+		
+		99 + 51 -> 147 + 51
+		99 + 204 -> 99 + 204
+
+------------------------------------------------------ 
+
+For 54 in 3rd position:
+	
+	if 2nd rule is 51:
+		
+		54 + 17 -> 147 + 17
+		54 + 68 -> 99 + 68
+	
+	else if 2nd rule is 204:
+
+		54 + 17 -> 57 + 17
+		54 + 68 -> 54 + 68
+
+For 54 in 2nd position:
+
+	if 1st rule is 3:
+		
+		54 + 51 -> 147 + 51
+		54 + 204 -> 99 + 204
+	
+	else if 1st rule is 12:
+	
+		54 + 51 -> 57 + 51
+		54 + 204 -> 54 + 204
+
+------------------------------------------------------
+
+* obs for 99 and 54 are inverse of each other
+* obs for 57 and 147 are inverse of each other
+
+------------------------------------------------------
+
+For 57 in 3rd position:
+
+	if 2nd rule is 51:
+		
+		57 + 17 -> 99 + 17
+		57 + 68 -> 147 + 68
+	
+	if 2nd rule is 204:
+		
+		57 + 17 -> 54 + 17
+		57 + 68 -> 57 + 68
+
+For 57 in 2nd position:
+	
+	if 1st rule is 3:
+		
+		57 + 51 -> 99 + 51
+		54 + 204 -> 147 + 204
+	
+	else if 1st rule is 12:
+	
+		57 + 51 -> 54 + 51
+		57 + 204 -> 57 + 204
+
+------------------------------------------------------
+
+For 60 in 3rd position:
+
+	if 2nd rule is 51:
+		
+		60 -> 195
+
+	else if 2nd rule is 204:
+		
+		60 -> 60
+	
+	else if 2nd rule is 170:
+		
+		60 -> 240
+
+	else if 2nd rule is 85:
+		
+		60 -> 15
+
+For 60 in 2nd position:
+
+	if 1st rule is 3:
+		
+		60 -> 195
+	
+	if 1st rule is 12:
+	
+		60 -> 60
+
+	if 1st rule is 5:
+	
+		60 -> 15
+	
+	if first rule is 10:
+	
+		60 -> 240
+
+------------------------------------------------------
+
+For 195 in 3rd position:
+
+	if 2nd rule is 51:
+	
+		195 -> 60
+	
+	else if 2nd rule is 204:
+	
+		195 -> 195
+	
+	else if 2nd rule is 170:
+
+		195 -> 240
+
+For 195 in 2nd position: same as 60
+
+------------------------------------------------------
+
+ For 147 in 3rd position:
+
+	if 2nd rule is 51:
+		
+		147 + 17 -> 54 + 17
+		147 + 68 -> 57 + 68
+	
+	if 2nd rule is 204:
+		
+		147 + 17 -> 99 + 17
+		147 + 68 -> 147 + 68
+
+For 147 in 2nd position:
+	
+	if 1st rule is 3:
+		
+		147 + 51 -> 54 + 51
+		147 + 204 -> 57 + 204
+	
+	else if 1st rule is 12:
+	
+		147 + 51 -> 99 + 51
+		147 + 204 -> 147 + 204
+
+------------------------------------------------------
+
+For 15 in 3rd position:
+
+	if 2nd rule is 51:
+		
+		150 + 17 -> 150 + 17
+		150 + 68 -> 105 + 68
+
+	else if 2nd rule is 204:
+	
+		150 + 17 -> 105 + 17
+		150 + 68 -> 150 + 68
+
+For 150 in 2nd position:
+
+	if 1st rule is 3:
+	
+		150 + 51 -> 150 + 51
+		150 + 204 -> 105 + 204
+	
+	else if 1st rule is 12:
+		
+		150 + 51 -> 105 + 51
+		150 + 204 -> 150 + 204
+
+------------------------------------------------------
+
+For 156 in 3rd position:
+
+	if 2nd rule is 51:
+	
+		156 + 17 -> 198 + 17
+		156 + 68 -> 201 + 68
+	
+	else if 2nd rule is 204:
+		
+		156 + 17 -> 108 + 17
+		156 + 68 -> 156 + 68
+
+For 156 in 2nd position:
+
+	if 1st rule is 3:
+	
+		156 + 51 -> 198 + 51
+		156 + 204 -> 201 + 204
+
+	else if 1st rule is 12:
+	
+		156 + 51 -> 108 + 51
+		156 + 204 -> 156 + 204
+
+------------------------------------------------------
+		
+For 198 in 3rd position:
+		
+	if 2nd rule is 51:
+	
+		198 + 17 -> 156 + 17
+		198 + 68 -> 108 + 68
+	
+	else if 2nd rule is 204:
+		
+		198 + 17 -> 201 + 17
+		198 + 68 -> 198 + 68
+
+For 198 in 2nd position:
+
+	if 1st rule is 3:
+	
+		198 + 51 -> 156 + 51
+		198 + 204 -> 108 + 204
+
+	else if 1st rule is 12:
+	
+		198 + 51 -> 201 + 51
+		198 + 204 -> 198 + 204
+
+------------------------------------------------------
+
+For 201 in 3rd position:
+		
+	if 2nd rule is 51:
+	
+		201 + 17 -> 108 + 17
+		201 + 68 -> 156 + 68
+	
+	else if 2nd rule is 204:
+		
+		201 + 17 -> 198 + 17
+		201 + 68 -> 201 + 68
+
+For 201 in 2nd position:
+
+	if 1st rule is 3:
+	
+		201 + 51 -> 108 + 51
+		201 + 204 -> 156 + 204
+
+	else if 1st rule is 12:
+	
+		201 + 51 -> 198 + 51
+		201 + 204 -> 201 + 204
+
+------------------------------------------------------
+
+For 105 in 3rd position:
+		
+	if 2nd rule is 51:
+	
+		105 + 17 -> 105 + 17
+		105 + 68 -> 150 + 68
+	
+	else if 2nd rule is 204:
+		
+		105 + 17 -> 150 + 17
+		105 + 68 -> 105 + 68
+
+For 105 in 2nd position:
+
+	if 1st rule is 3:
+	
+		105 + 51 -> 105 + 51
+		105 + 204 -> 150 + 204
+
+	else if 1st rule is 12:
+	
+		105 + 51 -> 150 + 51
+		105 + 204 -> 105 + 204
+
+------------------------------------------------------
+
+For 108 in 3rd position:
+		
+	if 2nd rule is 51:
+	
+		108 + 17 -> 201 + 17
+		108 + 68 -> 198 + 68
+	
+	else if 2nd rule is 204:
+		
+		108 + 17 -> 156 + 17
+		108 + 68 -> 108 + 68
+
+For 105 in 2nd position:
+
+	if 1st rule is 3:
+	
+		108 + 51 -> 201 + 51
+		108 + 204 -> 198 + 204
+
+	else if 1st rule is 12:
+	
+		108 + 51 -> 156 + 51
+		108 + 204 -> 108 + 204
+
+------------------------------------------------------
+
+For 240 in 3rd position:
+
+	if 2nd rule is 85:
+	
+		240 -> 15
+
+	else if 2nd rule is 170:
+	
+		240 -> 240
+	
+	else if 2nd rule is 102:
+
+		240 -> 60
+
+	else if 2nd rule is 153:
+
+		240 -> 195
+
+For 240 in 2nd position:
+
+	if 1st rule is 5:
+		
+		240 -> 15
+
+	else if 1st rule is 10:
+	
+		240 -> 240
+	
+	else if 1st rule is 6:
+	
+		240 -> 60
+
+	else if 1st rule is 9:
+
+		240 -> 195
+
+------------------------------------------------------
+
+	
+
+	
+	
+		
+
+	
+
+
+
+
+	
+
+
+
+
+  
